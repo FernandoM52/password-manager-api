@@ -2,8 +2,8 @@ import { ConflictException, ForbiddenException, Injectable, NotFoundException } 
 import { CreateCredentialDto } from './dto/create-credential.dto';
 import { UpdateCredentialDto } from './dto/update-credential.dto';
 import { CredentialsRepository } from './credentials.repository';
-import { User } from '@prisma/client';
 import { CredentialsHelper } from '../helpers/credentials.helper';
+import { User } from '@prisma/client';
 
 @Injectable()
 export class CredentialsService {
@@ -13,7 +13,7 @@ export class CredentialsService {
   ) { }
 
   async create(user: User, createCredentialDto: CreateCredentialDto) {
-    const credential = await this.credentialRepository.findByTitleAndEmail(createCredentialDto.title, user.id);
+    const credential = await this.credentialRepository.findByTitleAndUserId(createCredentialDto.title, user.id);
     if (credential) throw new ConflictException('A credential with this title already exists');
 
     const encryptedCredential = this.credentialHelper.encryptCredential(createCredentialDto);
@@ -44,7 +44,7 @@ export class CredentialsService {
   private async validateCrential(id: number, userId: number) {
     const credential = await this.credentialRepository.findOne(id);
     if (!credential) throw new NotFoundException('Credential not found');
-    if (credential.userId !== userId) throw new ForbiddenException("You don't have permission for delete this credential");
+    if (credential.userId !== userId) throw new ForbiddenException("You don't have permission to this credential");
 
     return credential;
   }

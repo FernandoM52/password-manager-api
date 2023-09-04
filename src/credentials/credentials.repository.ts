@@ -5,30 +5,25 @@ import { UpdateCredentialDto } from './dto/update-credential.dto';
 
 @Injectable()
 export class CredentialsRepository {
-  constructor(private readonly prisma: PrismaService) {
-
-  }
-
-  async findByTitleAndEmail(title: string, userId: number) {
-    return await this.prisma.credential.findUnique({
-      where: {
-        title_userId: { title, userId }
-      }
-    });
-  }
+  constructor(private readonly prisma: PrismaService) { }
 
   async create(createCredentialDto: CreateCredentialDto, userId: number) {
     return await this.prisma.credential.create({
-      data: {
-        ...createCredentialDto,
-        userId,
-      },
+      data: { ...createCredentialDto, userId, },
       select: {
         id: true,
         title: true,
         url: true,
         username: true
       },
+    });
+  }
+
+  async findByTitleAndUserId(title: string, userId: number) {
+    return await this.prisma.credential.findUnique({
+      where: {
+        title_userId: { title, userId }
+      }
     });
   }
 
@@ -47,7 +42,7 @@ export class CredentialsRepository {
     return await this.prisma.credential.update({
       where: { id, userId },
       data: updateCredentialDto
-    })
+    });
   }
 
   async delete(id: number, userId: number) {
