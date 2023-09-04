@@ -1,4 +1,5 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, HttpStatus } from '@nestjs/common';
+import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { HealthCheckService, HttpHealthIndicator, HealthCheck } from '@nestjs/terminus';
 
 @Controller('health')
@@ -9,6 +10,8 @@ export class HealthController {
   ) { }
 
   @Get()
+  @ApiResponse({ status: HttpStatus.OK, description: 'App is up and health!' })
+  @ApiOperation({ summary: 'Checks API health' })
   @HealthCheck()
   check() {
     return this.health.check([

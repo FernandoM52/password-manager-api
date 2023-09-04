@@ -1,3 +1,4 @@
+import { ApiProperty } from "@nestjs/swagger";
 import { Type } from "@prisma/client";
 import {
   IsBoolean,
@@ -46,37 +47,71 @@ export class IsCardExpiration implements ValidatorConstraintInterface {
 }
 
 export class CreateCardDto {
+  @ApiProperty({
+    example: 'My card from XXX',
+    description: 'A title for user card'
+  })
   @IsNotEmpty()
   @IsString()
   title: string;
 
+  @ApiProperty({
+    example: '1234567890123456',
+    description: 'User card number'
+  })
   @IsNotEmpty()
   @IsNumberString()
   @Validate(IsCardNumber)
   number: string;
 
+  @ApiProperty({
+    example: 'Bank XYZ',
+    description: 'User card issuer'
+  })
   @IsNotEmpty()
   @IsString()
   issuer: string;
 
+  @ApiProperty({
+    example: '123',
+    description: 'User card CVV'
+  })
   @IsNotEmpty()
   @IsNumberString()
   @Validate(IsCvvCard)
   code: string;
 
+  @ApiProperty({
+    example: '12/23',
+    description: 'User card expiration date'
+  })
   @IsNotEmpty()
   @IsString()
   @Validate(IsCardExpiration)
   expiration: string;
 
+  @ApiProperty({
+    example: '1234',
+    description: 'User card password'
+  })
   @IsNotEmpty()
-  @IsString()
+  @IsNumberString()
   password: string;
 
+  @ApiProperty({
+    example: 'true',
+    description: "True if the user's card is virtual and false otherwise",
+    examples: [true, false]
+  })
   @IsNotEmpty()
   @IsBoolean()
   virtual: boolean;
 
+  @ApiProperty({
+    example: 'CREDIT',
+    description: 'User type card',
+    examples: ['CREDIT', 'DEBIT', 'BOTH']
+  })
   @IsNotEmpty()
   @IsEnum(Type)
   type: Type
