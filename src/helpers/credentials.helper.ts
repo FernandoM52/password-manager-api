@@ -7,7 +7,7 @@ export class CredentialsHelper {
   private Cryptr = require('cryptr');
   private crypter: any;
 
-  constructor() { this.crypter = new this.Cryptr(process.env.CRYPTR_SECRET); }
+  constructor() { this.crypter = new this.Cryptr(process.env.CRYPTR_SECRET) }
 
   encryptCredential(credential: CreateCredentialDto): CreateCredentialDto {
     return {

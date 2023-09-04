@@ -43,16 +43,16 @@ model Note {
 }
 
 model Card {
-  id         Int      @id @default(autoincrement())
+  id         Int     @id @default(autoincrement())
   number     String
   issuer     String
   code       String
-  expiration DateTime
+  expiration String
   password   String
   virtual    Boolean
   type       Type
   title      String
-  user       User     @relation(fields: [userId], references: [id])
+  user       User    @relation(fields: [userId], references: [id])
   userId     Int
 
   @@unique([title, userId])

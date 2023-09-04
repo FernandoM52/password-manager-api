@@ -14,7 +14,8 @@ export class CredentialsRepository {
         id: true,
         title: true,
         url: true,
-        username: true
+        username: true,
+        userId: true
       },
     });
   }

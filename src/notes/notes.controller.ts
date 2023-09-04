@@ -12,7 +12,10 @@ export class NotesController {
   constructor(private readonly notesService: NotesService) { }
 
   @Post()
-  create(@Body() createNoteDto: CreateNoteDto, @User() user: UserPrisma) {
+  create(
+    @Body() createNoteDto: CreateNoteDto,
+    @User() user: UserPrisma
+  ) {
     return this.notesService.create(createNoteDto, user);
   }
 
@@ -22,17 +25,27 @@ export class NotesController {
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number, @User() user: UserPrisma) {
+  findOne(
+    @Param('id', ParseIntPipe) id: number,
+    @User() user: UserPrisma
+  ) {
     return this.notesService.findOne(+id, user);
   }
 
   @Put(':id')
-  update(@Param('id', ParseIntPipe) id: number, @Body() updateNoteDto: UpdateNoteDto, @User() user: UserPrisma) {
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateNoteDto: UpdateNoteDto,
+    @User() user: UserPrisma
+  ) {
     return this.notesService.update(+id, updateNoteDto, user);
   }
 
   @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number, @User() user: UserPrisma) {
+  remove(
+    @Param('id', ParseIntPipe) id: number,
+    @User() user: UserPrisma
+  ) {
     return this.notesService.remove(+id, user);
   }
 }
