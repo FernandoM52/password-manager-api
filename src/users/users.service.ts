@@ -1,6 +1,7 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { UsersRepository } from './users.repository';
 import { CreateUserDto } from './dto/create-user.dto';
+import { User } from '@prisma/client';
 
 @Injectable()
 export class UsersService {
@@ -22,5 +23,9 @@ export class UsersService {
     if (!user) throw new NotFoundException('User not found');
 
     return user;
+  }
+
+  async delete(user: User) {
+    return await this.userRepository.delete(user.id);
   }
 }

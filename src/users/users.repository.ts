@@ -30,4 +30,8 @@ export class UsersRepository {
   async findById(id: number) {
     return await this.prisma.user.findUnique({ where: { id } });
   }
+
+  async delete(id: number) {
+    return await this.prisma.user.delete({ where: { id } });
+  }
 }

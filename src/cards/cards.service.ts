@@ -45,4 +45,8 @@ export class CardsService {
 
     return card;
   }
+
+  async deleteMany(user: User) {
+    return await this.cardRepository.deleteMany(user.id);
+  }
 }

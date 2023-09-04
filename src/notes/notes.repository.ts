@@ -39,4 +39,8 @@ export class NotesRepository {
   async delete(id: number, userId: number) {
     return await this.prisma.note.delete({ where: { id, userId } });
   }
+
+  async deleteMany(userId: number) {
+    return await this.prisma.note.deleteMany({ where: { userId } });
+  }
 }

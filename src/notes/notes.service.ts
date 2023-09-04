@@ -40,4 +40,8 @@ export class NotesService {
 
     return note;
   }
+
+  async deleteMany(user: User) {
+    return await this.noteRepository.deleteMany(user.id);
+  }
 }

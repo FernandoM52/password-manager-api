@@ -49,4 +49,8 @@ export class CredentialsRepository {
   async delete(id: number, userId: number) {
     return await this.prisma.credential.delete({ where: { id, userId } });
   }
+
+  async deleteMany(userId: number) {
+    return await this.prisma.credential.deleteMany({ where: { userId } });
+  }
 }

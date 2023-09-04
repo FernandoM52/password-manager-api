@@ -51,4 +51,8 @@ export class CardsRepository {
   async delete(id: number, userId: number) {
     return await this.prisma.card.delete({ where: { id, userId } });
   }
+
+  async deleteMany(userId: number) {
+    return await this.prisma.card.deleteMany({ where: { userId } });
+  }
 }

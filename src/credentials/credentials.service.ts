@@ -48,4 +48,8 @@ export class CredentialsService {
 
     return credential;
   }
+
+  async deleteMany(user: User) {
+    await this.credentialRepository.deleteMany(user.id);
+  }
 }
