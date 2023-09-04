@@ -1,4 +1,4 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { UsersRepository } from './users.repository';
 import { CreateUserDto } from './dto/create-user.dto';
 
@@ -15,5 +15,12 @@ export class UsersService {
 
   async findByEmail(email: string) {
     return await this.userRepository.findByEmail(email);
+  }
+
+  async findById(id: number) {
+    const user = await this.userRepository.findById(id);
+    if (!user) throw new NotFoundException('User not found');
+
+    return user;
   }
 }
