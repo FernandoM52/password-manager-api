@@ -16,7 +16,8 @@ Password Manager is a RESTful API to help individuals efficiently manage their p
   - Payments Cards
 - Complete deletion of data and user account
 
-Check out the complete swagger documentation through this link: https://driven-pass-api-ofsv.onrender.com/api
+<h3>Swagger documentation</h3>
+Check out the complete swagger documentation through this link: https://password-manager-api-nzr2.onrender.com/api
 
 <h3>Next steps:</h3>
 
@@ -29,6 +30,12 @@ Check out the complete swagger documentation through this link: https://driven-p
 <h3>Some observations about this App:</h3>
 
 1. The integration tests are not complete, but as soon as they are finished, they will be posted to the repository.
+
+## Why
+
+Lately I've been worried about the large volume of websites and passwords that we need to create/save and it's really quite complicated to keep everything saved on something as easily accessible as your cell phone. With this in mind, I came up with the idea of ​​creating an application in which I can manage this data efficiently but at the same time securely.
+
+So, I'm very grateful to made it and share this project, hope be very useful to you. Enjoy! 
 
 ## Technologies
 
@@ -45,15 +52,27 @@ Check out the complete swagger documentation through this link: https://driven-p
 
 ## How to run
 
+<h3>Installations</h3>
 
-## Installation
+1. Clone this repository and instal the dependencies:
 
-```bash
-$ npm install
+```
+git clone https://github.com/FernandoM52/password-manager-api.git
+
+cd password-manager-api
+
+npm i
 ```
 
+2. Use the `/.env.example` to create a `/.env` file and set the environment variables as described in the example file.
+3. Run the following commands to create your database with prism:
 
-## Running the app
+```
+npm run migrate:dev
+npm run prisma:generate
+```
+
+<h3>Running the app</h3>
 
 ```bash
 # development
@@ -66,7 +85,7 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+## Running tests
 
 ```bash
 # unit tests
