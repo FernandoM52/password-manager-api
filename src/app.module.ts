@@ -11,7 +11,16 @@ import { CardsModule } from './cards/cards.module';
 import { EraseModule } from './erase/erase.module';
 
 @Module({
-  imports: [HealthModule, UsersModule, PrismaModule, AuthModule, CredentialsModule, NotesModule, CardsModule, EraseModule],
+  imports: [
+    HealthModule,
+    UsersModule,
+    PrismaModule,
+    AuthModule,
+    CredentialsModule,
+    NotesModule,
+    CardsModule,
+    EraseModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

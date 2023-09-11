@@ -13,9 +13,12 @@ export class LoginDto {
   @ApiProperty({
     example: 'Str0ngP4ssW0rD!',
     description: 'Your account password',
-
   })
   @IsNotEmpty()
   @IsString()
   password: string;
+
+  constructor(params?: Partial<LoginDto>) {
+    if (params) Object.assign(this, params);
+  }
 }
